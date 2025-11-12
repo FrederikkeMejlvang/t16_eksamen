@@ -2,6 +2,14 @@
 import "../styles/style.css";
 import Header from "../components/Header.astro";
 const {title} = Astro.props
+const data = await fetch("https://awvcgdvcnaczmcuxiuia.supabase.co/rest/v1/books", {
+	method: "GET", 
+	headers: {
+		apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3dmNnZHZjbmFjem1jdXhpdWlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI5Mzg3OTAsImV4cCI6MjA3ODUxNDc5MH0.MoWw2g-t4EKxD9j8aywOr7Lm5e3ZlEFJExZ0NTXUXSQ"
+	}
+}).then(res=>res.json());
+
+console.log(data);
 ---
 
 <html lang="en">

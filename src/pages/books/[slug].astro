@@ -1,0 +1,29 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+
+export async function getStaticPaths() {
+  const data = await fetch('https://awvcgdvcnaczmcuxiuia.supabase.co/rest/v1/books',
+{
+    method: "GET", 
+	headers: {
+		apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3dmNnZHZjbmFjem1jdXhpdWlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI5Mzg3OTAsImV4cCI6MjA3ODUxNDc5MH0.MoWw2g-t4EKxD9j8aywOr7Lm5e3ZlEFJExZ0NTXUXSQ"
+	},
+}
+   ).then(response =>response.json());
+
+  return data.map((book) => {
+    return {
+      params: { slug: book.slug },
+      props: { myData:book },
+    };
+  });
+}
+
+const {myData} = Astro.props;
+console.log(myData);
+---
+
+<MainLayout title={myData["name"]}>
+    <h2>{myData["name"]}</h2>
+    <p>{myData["description"]}</p>
+</MainLayout>

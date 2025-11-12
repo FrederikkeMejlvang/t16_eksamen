@@ -1,9 +1,14 @@
 ---
-const {header, text, newRelease} = Astro.props;
+const {newRelease} = Astro.props;
+const {data} = Astro.props;
 ---
 
+<a href={`books/${data.slug}`}>
 <article>
-    <h2>{header}</h2>
+    <img src={`/images/${data.image}`} alt={data.name}/>
+    <h2>{data.name}</h2>
     {newRelease && <p>NEW RELEASE</p>}
-    <p>{text}</p>
+    <p>{data.author}</p>
+    <p>price</p>
 </article>
+</a>
